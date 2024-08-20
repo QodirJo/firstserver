@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option go_package = "genproto/health_sync";
+
+package health_sync;
+
+import "common.proto";
+
+service MedicalRecordService {
+    rpc Create (MedicalRecordCreate) returns (Void) {}
+    rpc Update (MedicalRecordUpdate) returns (Void) {}
+    rpc Delete (GetById) returns (Void) {}
+    rpc Get (GetById) returns (MedicalRecordRes) {}
+    rpc List (Filter) returns (GetAllMedicalRecordsRes) {}
+}
+
+message MedicalRecordCreate {
+    string user_id = 1;
+    string record_type = 2;
+    string record_date = 3;
+    string description = 4;
+    string attachments = 5;
+}
+
+message MedicalRecordUpdate {
+    string id = 1;
+    string user_id = 2;
+    string record_type = 3;
+    string record_date = 4;
+    string description = 5;
+    string attachments = 6;
+}
+
+message MedicalRecordRes {
+    string id = 1;
+    string user_id = 2;
+    string record_type = 3;
+    string record_date = 4;
+    string description = 5;
+    string attachments = 6;
+}
+
+message GetAllMedicalRecordsRes {
+    repeated MedicalRecordRes GetAllMedicalRecordsRes = 1;
+}

@@ -1,0 +1,46 @@
+syntax =  "proto3";
+
+option go_package = "genproto/health_sync";
+
+package health_sync;
+
+import "common.proto";
+
+
+service WearableService {
+    rpc Create (WearableCreate) returns (Void) {}
+    rpc Update (WearableUpdate) returns (Void) {}
+    rpc Delete (GetById) returns (Void) {}
+    rpc Get (GetById) returns (Wearable) {}
+    rpc List(Filter) returns (WearableList) {}
+}
+
+message WearableCreate {
+    string user_id = 1;
+    string device_type = 2;
+    string data_type = 3;
+    string data_value = 4;
+    string recorded_timestamp = 5;
+}
+
+message Wearable {
+    string id = 1;
+    string user_id = 2;
+    string device_type = 3;
+    string data_type = 4;
+    string data_value = 5;
+    string recorded_timestamp = 6;
+}
+
+message WearableUpdate {
+    string id = 1;
+    string user_id = 2;
+    string device_type = 3;
+    string data_type = 4;
+    string data_value = 5;
+    string recorded_timestamp = 6;
+}
+
+message WearableList {
+    repeated Wearable WearableList = 1;
+}

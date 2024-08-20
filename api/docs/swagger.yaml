@@ -1,0 +1,1071 @@
+basePath: /
+definitions:
+  health_sync.Filter:
+    properties:
+      limit:
+        type: integer
+      offset:
+        type: integer
+    type: object
+  health_sync.GeneticCreate:
+    properties:
+      analysis_date:
+        type: string
+      date_type:
+        type: string
+      date_value:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.GeneticList:
+    properties:
+      list:
+        items:
+          $ref: '#/definitions/health_sync.GeneticRes'
+        type: array
+    type: object
+  health_sync.GeneticRes:
+    properties:
+      analysis_date:
+        type: string
+      created_at:
+        type: string
+      date_type:
+        type: string
+      date_value:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.GeneticUpdate:
+    properties:
+      analysis_date:
+        type: string
+      date_type:
+        type: string
+      date_value:
+        type: string
+      id:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.GetAllHealthRecommendationsRes:
+    properties:
+      GetAllHealthRecommendationsRes:
+        items:
+          $ref: '#/definitions/health_sync.HealthRecommendationRes'
+        type: array
+    type: object
+  health_sync.GetById:
+    properties:
+      Id:
+        type: string
+    type: object
+  health_sync.HealthRecommendationCreate:
+    properties:
+      description:
+        type: string
+      priority:
+        type: string
+      recommendation_type:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.HealthRecommendationRes:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      priority:
+        type: string
+      recommendation_type:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.HealthRecommendationUpdate:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      priority:
+        type: string
+      recommendation_type:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.Lifestyle:
+    properties:
+      date_type:
+        type: string
+      date_value:
+        type: string
+      id:
+        type: string
+      recorded_date:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.LifestyleCreate:
+    properties:
+      date_type:
+        type: string
+      date_value:
+        type: string
+      recorded_date:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.LifestyleList:
+    properties:
+      LifestyleList:
+        items:
+          $ref: '#/definitions/health_sync.Lifestyle'
+        type: array
+    type: object
+  health_sync.LifestyleUpdate:
+    properties:
+      date_type:
+        type: string
+      date_value:
+        type: string
+      id:
+        type: string
+      recorded_date:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.MedicalRecordCreate:
+    properties:
+      attachments:
+        type: string
+      description:
+        type: string
+      record_date:
+        type: string
+      record_type:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.MedicalRecordUpdate:
+    properties:
+      attachments:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      record_date:
+        type: string
+      record_type:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.Void:
+    type: object
+  health_sync.Wearable:
+    properties:
+      data_type:
+        type: string
+      data_value:
+        type: string
+      device_type:
+        type: string
+      id:
+        type: string
+      recorded_timestamp:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.WearableCreate:
+    properties:
+      data_type:
+        type: string
+      data_value:
+        type: string
+      device_type:
+        type: string
+      recorded_timestamp:
+        type: string
+      user_id:
+        type: string
+    type: object
+  health_sync.WearableList:
+    properties:
+      WearableList:
+        items:
+          $ref: '#/definitions/health_sync.Wearable'
+        type: array
+    type: object
+  health_sync.WearableUpdate:
+    properties:
+      data_type:
+        type: string
+      data_value:
+        type: string
+      device_type:
+        type: string
+      id:
+        type: string
+      recorded_timestamp:
+        type: string
+      user_id:
+        type: string
+    type: object
+host: localhost:55555
+info:
+  contact: {}
+  description: ApiGatawey
+  title: ApiGatawey
+  version: "1.0"
+paths:
+  /genetic/create:
+    post:
+      consumes:
+      - application/json
+      description: CreateGenetic
+      parameters:
+      - description: CreateGenetic
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.GeneticCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/health_sync.Void'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: CreateGenetic
+      tags:
+      - Genetic
+  /genetic/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteGenetic
+      parameters:
+      - description: Genetic ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.Void'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: DeleteGenetic
+      tags:
+      - Genetic
+  /genetic/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: GetGenetic
+      parameters:
+      - description: id
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GeneticRes'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: GetGenetic
+      tags:
+      - Genetic
+  /genetic/list:
+    get:
+      consumes:
+      - application/json
+      description: ListGenetic
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GeneticList'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: ListGenetic
+      tags:
+      - Genetic
+  /genetic/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: UpdateGenetic updates a genetic record based on the provided id
+        and user_id.
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Genetic Update Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.GeneticUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GeneticUpdate'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: UpdateGenetic
+      tags:
+      - Genetic
+  /health-recommendation/create:
+    post:
+      consumes:
+      - application/json
+      description: CreateHealthRecommendation
+      parameters:
+      - description: CreateHealthRecommendation
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.HealthRecommendationCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/health_sync.Void'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: CreateHealthRecommendation
+      tags:
+      - HealthRecommendation
+  /health-recommendation/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a HealthRecommendation record based on the provided id
+      parameters:
+      - description: HealthRecommendation ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GetById'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: DeleteHealthRecommendation
+      tags:
+      - HealthRecommendation
+  /health-recommendation/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a HealthRecommendation record based on the provided id
+      parameters:
+      - description: HealthRecommendation ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GetById'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: GetHealthRecommendation
+      tags:
+      - HealthRecommendation
+  /health-recommendation/list:
+    get:
+      consumes:
+      - application/json
+      description: List HealthRecommendation records with pagination
+      parameters:
+      - default: "10"
+        description: limit
+        in: query
+        name: limit
+        type: string
+      - default: "0"
+        description: offset
+        in: query
+        name: offset
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GetAllHealthRecommendationsRes'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      tags:
+      - HealthRecommendation
+  /health-recommendation/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: UpdateHealthRecommendation updates a health_recommendation record
+        based on the provided id and user_id.
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: HealthRecommendation Update Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.HealthRecommendationUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.HealthRecommendationUpdate'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: UpdateHealthRecommendation
+      tags:
+      - HealthRecommendation
+  /lifestyle/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a new Lifestyle record
+      parameters:
+      - description: Create Lifestyle
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.LifestyleCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/health_sync.Void'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: CreateLifeStyle
+      tags:
+      - Lifestyle
+  /lifestyle/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a Lifestyle record based on the provided id
+      parameters:
+      - description: Lifestyle ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GetById'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: DeleteLifeStyle
+      tags:
+      - Lifestyle
+  /lifestyle/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a Lifestyle record based on the provided id
+      parameters:
+      - description: id
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GetById'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: GetLifeStyle
+      tags:
+      - Lifestyle
+  /lifestyle/list:
+    get:
+      consumes:
+      - application/json
+      description: List Lifestyle records with pagination
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.LifestyleList'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: ListLifeStyle
+      tags:
+      - Lifestyle
+  /lifestyle/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Update a Lifestyle record based on the provided id and user_id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Lifestyle Update Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.LifestyleUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.LifestyleUpdate'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: UpdateLifeStyle
+      tags:
+      - Lifestyle
+  /records/create:
+    post:
+      consumes:
+      - application/json
+      description: CreateRecords
+      parameters:
+      - description: CreateRecords
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.MedicalRecordCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/health_sync.Void'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: CreateRecords
+      tags:
+      - Records
+  /records/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteRecords deletes a records record based on the provided id
+        and user_id.
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.Void'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: DeleteRecords
+      tags:
+      - Records
+  /records/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: GetRecords
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GetById'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: GetRecords
+      tags:
+      - Records
+  /records/list:
+    get:
+      consumes:
+      - application/json
+      description: ListRecords
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.Filter'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: ListRecords
+      tags:
+      - Records
+  /records/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: UpdateRecords updates a records record based on the provided id
+        and user_id.
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Records Update Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.MedicalRecordUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.MedicalRecordUpdate'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: UpdateRecords
+      tags:
+      - Records
+  /wearable/create:
+    post:
+      consumes:
+      - application/json
+      description: CreateWearable
+      parameters:
+      - description: CreateWearable
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.WearableCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/health_sync.Void'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: CreateWearable
+      tags:
+      - Wearable
+  /wearable/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteWearable deletes a wearable record based on the provided
+        id and user_id.
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.Void'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: DeleteWearable
+      tags:
+      - Wearable
+  /wearable/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: GetWearable retrieves a wearable record based on the provided id.
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.GetById'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: GetWearable
+      tags:
+      - Wearable
+  /wearable/list:
+    get:
+      consumes:
+      - application/json
+      description: ListWearable retrieves a list of wearable records with optional
+        pagination.
+      parameters:
+      - default: "10"
+        description: limit
+        in: query
+        name: limit
+        type: string
+      - default: "0"
+        description: offset
+        in: query
+        name: offset
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.WearableList'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: ListWearable
+      tags:
+      - Wearable
+  /wearable/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: UpdateWearable updates a wearable record based on the provided
+        id and user_id.
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Wearable Update Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/health_sync.WearableUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/health_sync.WearableUpdate'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: UpdateWearable
+      tags:
+      - Wearable
+swagger: "2.0"

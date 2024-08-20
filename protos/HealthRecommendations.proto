@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option go_package = "genproto/health_sync";
+
+package health_sync;
+
+import "common.proto";
+
+service HealthRecommendationService {
+    rpc Create (HealthRecommendationCreate) returns (Void) {}
+    rpc Update (HealthRecommendationUpdate) returns (Void) {}
+    rpc Delete (GetById) returns (Void) {}
+    rpc Get (GetById) returns (HealthRecommendationRes) {}
+    rpc List (Filter) returns (GetAllHealthRecommendationsRes) {}
+}
+
+message HealthRecommendationCreate {
+    string user_id = 1;
+    string recommendation_type = 2;
+    string description = 3;
+    string priority = 4;
+}
+
+message HealthRecommendationUpdate {
+    string id = 1;
+    string user_id = 2;
+    string recommendation_type = 3;
+    string description = 4;
+    string priority = 5;
+}
+
+message HealthRecommendationRes {
+    string id = 1;
+    string user_id = 2;
+    string recommendation_type = 3;
+    string description = 4;
+    string priority = 5;
+    string updated_at = 6;
+    string created_at = 7;    
+}
+
+message GetAllHealthRecommendations {
+    string user_id = 1;
+    string recommendation_type = 2;
+    string description = 3;
+    string priority = 4;
+}
+
+message GetAllHealthRecommendationsRes {
+    repeated HealthRecommendationRes GetAllHealthRecommendationsRes = 1;
+}

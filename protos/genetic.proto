@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option go_package = "genproto/health_sync";
+
+package health_sync;
+
+import "common.proto";
+
+service GeneticService {
+    rpc CreateGenetic (GeneticCreate) returns (Void) {}
+    rpc UpdateGenetic (GeneticUpdate) returns (Void) {}
+    rpc DeleteGenetic (GetById) returns (Void) {}
+    rpc GetGenetic (GetById) returns (GeneticRes) {}
+    rpc ListGenetic (Filter) returns (GeneticList) {}
+}
+
+message GeneticCreate {
+    string user_id = 1;
+    string date_type = 2;
+    string date_value = 3;
+    string analysis_date = 4;
+}
+
+message GeneticList {
+    repeated GeneticRes list = 1;
+}
+
+message GeneticUpdate {
+    string id = 1;
+    string user_id = 2;
+    string date_type = 3;
+    string date_value = 4;
+    string analysis_date = 5;   
+}
+
+message     GeneticRes {
+    string id = 1;
+    string user_id = 2;
+    string date_type = 3;
+    string date_value = 4;
+    string analysis_date = 5;
+    string deleted_at = 6;
+    string created_at = 7;
+    string updated_at = 8;
+}
+

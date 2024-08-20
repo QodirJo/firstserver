@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option go_package = "genproto/health_sync";
+
+package health_sync;
+
+import "common.proto";
+
+service LifestyleService {
+    rpc Create (LifestyleCreate) returns (Void) {}
+    rpc Update (LifestyleUpdate) returns (Void) {}
+    rpc Delete (GetById) returns (Void) {}
+    rpc Get (GetById) returns (Lifestyle) {}
+    rpc List(Filter) returns (LifestyleList) {}
+}
+
+message LifestyleCreate {
+    string user_id = 1;
+    string date_type = 2;
+    string date_value = 3;
+    string recorded_date = 4;
+}
+
+message Lifestyle {
+    string id = 1;
+    string user_id = 2;
+    string date_type = 3;
+    string date_value = 4;
+    string recorded_date = 5;
+}
+
+message LifestyleUpdate {
+    string id = 1;
+    string user_id = 2;
+    string date_type = 3;
+    string date_value = 4;
+    string recorded_date = 5;
+    
+}
+
+message LifestyleList {
+    repeated Lifestyle LifestyleList = 1;
+}
